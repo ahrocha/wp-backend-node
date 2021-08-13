@@ -1,0 +1,22 @@
+{
+  "name": "hurpia-blog-backend-node",
+  "version": "1.0.0",
+  "description": "Backend em Node de um blog com conteúdo de uma base wordpress para aprendizado de Node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "blog",
+    "wordpress",
+    "mysql",
+    "crud",
+    "restapi"
+  ],
+  "author": "Andrey Hurpia da Rocha",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
