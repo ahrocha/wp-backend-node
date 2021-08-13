@@ -13,6 +13,8 @@ app.get("/", (req, res, next) => {
 	res.json({message: "Woelcome to my new code."});
 });
 
+require("./app/routes/post.routes.js")(app);
+
 app.listen(PORT, () => {
 	console.log("Running port 3000");
 });
