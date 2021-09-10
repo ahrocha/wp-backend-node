@@ -6,7 +6,12 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200,
+    methods: "GET, PUT"
+}
+app.use(corscorsOptions());
 //app.options('*', cors());
 
 app.use(bodyParser.json());
