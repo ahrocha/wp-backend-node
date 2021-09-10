@@ -11,7 +11,7 @@ var corsOptions = {
     optionsSuccessStatus: 200,
     methods: "GET, PUT"
 }
-app.use(corscorsOptions());
+app.use(cors(corsOptions));
 //app.options('*', cors());
 
 app.use(bodyParser.json());
