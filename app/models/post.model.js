@@ -51,7 +51,7 @@ Post.findByName = (postName, result) => {
 
 
 Post.getAll = result => {
-	sql.query("SELECT ID, post_title, post_date, post_name, post_status FROM 541Pib644_posts WHERE post_status = 'publish' ", (err, res) => {
+	sql.query("SELECT ID, post_title, post_date, post_name, post_status FROM 541Pib644_posts WHERE post_status = 'publish' ORDER BY post_date DESC ", (err, res) => {
 		if (err) {
 			console.log("error", err);
 			result(err, null);
