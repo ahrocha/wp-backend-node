@@ -39,7 +39,7 @@ Post.findByName = (postName, result) => {
 		}
 
 		if (res.length) {
-			console.log("Found post", res);
+			res[0].post_content = res[0].post_content.replace(/\[(.*?)\]/g, "");
 			result(null, res[0]);
 			return;
 		}
