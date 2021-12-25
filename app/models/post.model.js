@@ -6,15 +6,14 @@ const Post = function(post) {
 	this.title = post.title,
 	this.name = post.name,
 	this.content = post.content,
-	this.status = post.status,
-	this.tablePrefix = config.WP_TABLE_PREFIX
+	this.status = post.status
 };
 
 Post.findById = (postId, result) => {
-	
+	const tablePrefix = config.WP_TABLE_PREFIX;
 	sql.query(`
 			SELECT ID, post_title, post_date, post_name, post_content 
-			FROM '${this.tablePrefix}'posts WHERE ID = ${postId} `, (err, res) => {
+			FROM ${tablePrefix}posts WHERE ID = ${postId} `, (err, res) => {
 		if (err) {
 			console.log("error", err);
 			result(err, null);
@@ -33,9 +32,10 @@ Post.findById = (postId, result) => {
 };
 
 Post.findByName = (postName, result) => {
+	const tablePrefix = config.WP_TABLE_PREFIX;
 	sql.query(`
 		SELECT ID, post_title, post_date, post_name, post_content 
-		FROM '${this.tablePrefix}'posts WHERE post_name = '${postName}' 
+		FROM ${tablePrefix}posts WHERE post_name = '${postName}' 
 		AND post_status = 'publish' LIMIT 1 `, (err, res) => {
 		if (err) {
 			console.log("error", err);
@@ -55,19 +55,20 @@ Post.findByName = (postName, result) => {
 };
 
 Post.getAll = result => {
+	const tablePrefix = config.WP_TABLE_PREFIX;
 	sql.query(`
 		SELECT 
 			p.ID, p.post_title, p.post_date, p.post_name,
 			p.post_status, p.post_excerpt,
 			p.post_modified, p.guid,
 			u.display_name ,
-			(SELECT guid FROM '${this.tablePrefix}'posts ppp
-			LEFT JOIN '${this.tablePrefix}'postmeta wp ON wp.meta_value = ppp.ID
+			(SELECT guid FROM ${tablePrefix}posts ppp
+			LEFT JOIN ${tablePrefix}postmeta wp ON wp.meta_value = ppp.ID
 			WHERE wp.post_id = p.ID AND wp.meta_key = '_thumbnail_id' AND ppp.post_status = 'inherit'
 			LIMIT 1
 			) as image
-		FROM '${this.tablePrefix}'posts p
-		LEFT JOIN '${this.tablePrefix}'users u ON p.post_author = u.ID
+		FROM ${tablePrefix}posts p
+		LEFT JOIN ${tablePrefix}users u ON p.post_author = u.ID
 		WHERE p.post_status = 'publish'
 		ORDER BY ID DESC 
 		LIMIT 10 ; `, (err, res) => {
