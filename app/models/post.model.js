@@ -61,13 +61,13 @@ Post.getAll = result => {
 		p.post_status, p.post_excerpt,
 		p.post_modified, p.guid,
 		u.display_name ,
-		(select guid from wp_posts ppp
-		left join wp_postmeta wp ON wp.meta_value = ppp.ID
-		where wp.post_id = p.ID AND wp.meta_key = '_thumbnail_id' and ppp.post_status = 'inherit'
+		(SELECT guid FROM 541Pib644_posts ppp
+		LEFT JOIN 541Pib644_postmeta wp ON wp.meta_value = ppp.ID
+		WHERE wp.post_id = p.ID AND wp.meta_key = '_thumbnail_id' AND ppp.post_status = 'inherit'
 		LIMIT 1
 		) as image
-	FROM wp_posts p
-	LEFT JOIN wp_users u ON p.post_author = u.ID
+	FROM 541Pib644_posts p
+	LEFT JOIN 541Pib644_users u ON p.post_author = u.ID
 	WHERE p.post_status = 'publish'
 	ORDER BY ID DESC 
 	LIMIT 10 ; `, (err, res) => {
