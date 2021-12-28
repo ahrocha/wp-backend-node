@@ -8,7 +8,6 @@ exports.findAll = (req, res) => {
           err.message || "Some error occurred while retrieving posts."
       });
   	}
-  	console.log("AQUI");
   	res.send(data);
 
   });
